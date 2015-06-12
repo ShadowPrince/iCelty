@@ -10,6 +10,8 @@
 
 @interface Document : NSDocument
 
+@property (readonly, copy) NSArray *serverAddress;
+
 
 @end
 

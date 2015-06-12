@@ -13,18 +13,18 @@
 @end
 
 @implementation Document
+@synthesize serverAddress;
 
 - (instancetype)init {
     self = [super init];
     if (self) {
-        // Add your subclass-specific initialization here.
+        self.serverAddress = @[@"127.0.0.1", @"8080"];
     }
     return self;
 }
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     [super windowControllerDidLoadNib:aController];
-    // Add any code here that needs to be executed once the windowController has loaded the document's window.
 }
 
 + (BOOL)autosavesInPlace {
@@ -32,8 +32,6 @@
 }
 
 - (NSString *)windowNibName {
-    // Override returning the nib file name of the document
-    // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
     return @"Document";
 }
 
@@ -50,6 +48,21 @@
     // If you override either of these, you should also override -isEntireFileLoaded to return NO if the contents are lazily loaded.
     [NSException raise:@"UnimplementedMethod" format:@"%@ is unimplemented", NSStringFromSelector(_cmd)];
     return YES;
+}
+
+
+- (void) setServerAddress:(NSArray *)_serverAddress {
+    NSArray *address;
+    if (_serverAddress == nil)
+        address = @[];
+    else
+        address = [_serverAddress copy];
+
+    if ([address count] == 1)
+        address = [address arrayByAddingObjectsFromArray:@[@"8080"]];
+
+    serverAddress = address;
+    
 }
 
 @end
