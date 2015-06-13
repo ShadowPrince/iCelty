@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		08276F491B2B82B500F851FB /* HelmetProgressbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 08276F481B2B82B400F851FB /* HelmetProgressbar.m */; };
 		08276F4C1B2B8F9900F851FB /* HelmetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08276F4B1B2B8F9900F851FB /* HelmetLabel.m */; };
+		085BFC801B2C4E9C00366C55 /* CeltyClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 085BFC7F1B2C4E9C00366C55 /* CeltyClient.m */; };
 		08B3C9881B2A0011001F86A9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9871B2A0011001F86A9 /* AppDelegate.m */; };
 		08B3C98A1B2A0011001F86A9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9891B2A0011001F86A9 /* main.m */; };
 		08B3C98D1B2A0011001F86A9 /* Document.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C98C1B2A0011001F86A9 /* Document.m */; };
@@ -37,6 +38,8 @@
 		08276F481B2B82B400F851FB /* HelmetProgressbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetProgressbar.m; sourceTree = "<group>"; };
 		08276F4A1B2B8F9900F851FB /* HelmetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetLabel.h; sourceTree = "<group>"; };
 		08276F4B1B2B8F9900F851FB /* HelmetLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetLabel.m; sourceTree = "<group>"; };
+		085BFC7E1B2C4E9C00366C55 /* CeltyClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeltyClient.h; sourceTree = "<group>"; };
+		085BFC7F1B2C4E9C00366C55 /* CeltyClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeltyClient.m; sourceTree = "<group>"; };
 		08B3C9811B2A0011001F86A9 /* celty-test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "celty-test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		08B3C9851B2A0011001F86A9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		08B3C9861B2A0011001F86A9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		085BFC811B2C4EA000366C55 /* Celty */ = {
+			isa = PBXGroup;
+			children = (
+				085BFC7E1B2C4E9C00366C55 /* CeltyClient.h */,
+				085BFC7F1B2C4E9C00366C55 /* CeltyClient.m */,
+			);
+			name = Celty;
+			sourceTree = "<group>";
+		};
 		08B3C9781B2A0011001F86A9 = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +116,7 @@
 				08B3C98B1B2A0011001F86A9 /* Document.h */,
 				08B3C98C1B2A0011001F86A9 /* Document.m */,
 				08B3C9C71B2B5573001F86A9 /* UI */,
+				085BFC811B2C4EA000366C55 /* Celty */,
 				08B3C9BC1B2B48E4001F86A9 /* Helmet */,
 				08B3C98E1B2A0011001F86A9 /* Document.xib */,
 				08B3C9931B2A0011001F86A9 /* MainMenu.xib */,
@@ -265,6 +278,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				085BFC801B2C4E9C00366C55 /* CeltyClient.m in Sources */,
 				08B3C98D1B2A0011001F86A9 /* Document.m in Sources */,
 				08B3C9C61B2B51A0001F86A9 /* HelmetInput.m in Sources */,
 				08B3C9B51B2B3F8B001F86A9 /* HelmetView.m in Sources */,

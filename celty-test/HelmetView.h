@@ -12,8 +12,10 @@
 @property (readonly, strong) NSMutableDictionary *viewDict;
 
 @property (readwrite, strong) NSArray *sizeConstraints;
+@property (readwrite, weak) NSStackView *currentRow, *stackView;
 @property (readwrite, assign) int totalTopOffset, ongoingTopOffset, ongoingLeftOffset, maxTopOffset, maxLeftOffset;
 
-- (id) initWithObject:(id *)object;
+- (void) initCeltyObjects:(NSArray *)rows;
+- (void) displayString:(NSString *)str;
 
 @end

@@ -11,9 +11,9 @@
 @interface HelmetButton : NSButton
 @property (readonly, copy) NSString *name;
 @property (readonly, copy) NSString *command;
-@property (readonly, strong) NSArray *requiredValues;
+@property (readonly, copy) NSArray *requiredValues;
 
-@property (readonly, strong) NSMutableDictionary *args;
+@property (readwrite, copy) NSMutableDictionary *args;
 
 - (id) initWithName:(NSString *)_name
              command:(NSString *)_command

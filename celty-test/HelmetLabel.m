@@ -14,7 +14,7 @@
 
 - (id) initWithName:(NSString *)_name
                 text:(NSString *)_text {
-    self = [super initWithFrame:NSMakeRect(0, 0, 0, 0)];
+    self = [super init];
     
     name = _name;
 

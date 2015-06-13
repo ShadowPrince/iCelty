@@ -13,9 +13,14 @@
 
 
 - (id) initWithName:(NSString *)_name {
-    self = [super initWithFrame:NSMakeRect(0, 0, 100, 20)];
+    self = [super init];
     name = _name;
 
+    [self addConstraints:
+     [NSLayoutConstraint constraintsWithVisualFormat:@"[x(200)]"
+                                             options:0
+                                             metrics:nil
+                                               views:@{@"x": self}]];
     return self;
 }
 

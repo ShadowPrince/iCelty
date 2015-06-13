@@ -6,6 +6,8 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="Document">
             <connections>
+                <outlet property="helmetView" destination="GRM-MI-wZf" id="CjP-5V-YJD"/>
+                <outlet property="widgets" destination="GO4-CV-kSX" id="oOW-XP-E29"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>
             </connections>
         </customObject>
@@ -14,15 +16,15 @@
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="xOd-HO-29H" userLabel="Window">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="133" y="235" width="428" height="397"/>
+            <rect key="contentRect" x="133" y="235" width="675" height="397"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <value key="minSize" type="size" width="94" height="86"/>
             <view key="contentView" id="gIp-Ho-8D9">
-                <rect key="frame" x="0.0" y="0.0" width="428" height="397"/>
+                <rect key="frame" x="0.0" y="0.0" width="675" height="397"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yO9-iG-fth">
-                        <rect key="frame" x="5" y="370" width="107" height="22"/>
+                        <rect key="frame" x="5" y="370" width="354" height="22"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" placeholderString="Server adress" drawsBackground="YES" id="T8c-yx-6ci">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -34,27 +36,28 @@
                         </connections>
                     </textField>
                     <button verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nix-8N-TJD">
-                        <rect key="frame" x="380" y="370" width="41" height="23"/>
+                        <rect key="frame" x="627" y="370" width="41" height="23"/>
                         <buttonCell key="cell" type="smallSquare" title="Value" bezelStyle="smallSquare" imagePosition="overlaps" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jo9-zG-jsz">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
                     <button ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvG-mb-gc6">
-                        <rect key="frame" x="313" y="372" width="61" height="18"/>
+                        <rect key="frame" x="560" y="372" width="61" height="18"/>
                         <buttonCell key="cell" type="check" title="Check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="JVK-MU-KQA">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
                     </button>
-                    <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="N4i-h8-NMe">
-                        <rect key="frame" x="-1" y="-1" width="430" height="364"/>
-                        <clipView key="contentView" id="bNM-05-wif">
+                    <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="N4i-h8-NMe">
+                        <rect key="frame" x="247" y="-5" width="435" height="367"/>
+                        <clipView key="contentView" wantsLayer="YES" id="bNM-05-wif">
                             <rect key="frame" x="1" y="1" width="166" height="79"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GRM-MI-wZf" customClass="HelmetView">
                                     <rect key="frame" x="0.0" y="0.0" width="428" height="362"/>
+                                    <animations/>
                                 </customView>
                             </subviews>
                         </clipView>
@@ -67,14 +70,37 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
+                    <scrollView fixedFrame="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ADO-zI-1hp">
+                        <rect key="frame" x="5" y="-3" width="241" height="365"/>
+                        <clipView key="contentView" misplaced="YES" id="2qj-t7-H2N">
+                            <rect key="frame" x="1" y="1" width="166" height="79"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <subviews>
+                                <stackView orientation="vertical" alignment="leading" horizontalHuggingPriority="249" verticalHuggingPriority="249" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GO4-CV-kSX">
+                                    <rect key="frame" x="0.0" y="0.0" width="239" height="363"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="239" id="9uC-ea-xHc"/>
+                                    </constraints>
+                                </stackView>
+                            </subviews>
+                        </clipView>
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="LLO-fc-qE8">
+                            <rect key="frame" x="1" y="80" width="166" height="15"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="g44-f3-oXb">
+                            <rect key="frame" x="167" y="1" width="15" height="79"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                        </scroller>
+                    </scrollView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="N4i-h8-NMe" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="-1" id="4wO-EY-XEy"/>
+                    <constraint firstItem="N4i-h8-NMe" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="247" id="4wO-EY-XEy"/>
                     <constraint firstAttribute="trailing" secondItem="yO9-iG-fth" secondAttribute="trailing" constant="316" id="LHO-jJ-keU"/>
-                    <constraint firstAttribute="trailing" secondItem="N4i-h8-NMe" secondAttribute="trailing" constant="-1" id="QsB-N4-NG5"/>
-                    <constraint firstAttribute="bottom" secondItem="N4i-h8-NMe" secondAttribute="bottom" constant="-1" id="TfQ-lB-yP1"/>
+                    <constraint firstAttribute="trailing" secondItem="N4i-h8-NMe" secondAttribute="trailing" constant="-7" id="QsB-N4-NG5"/>
+                    <constraint firstAttribute="bottom" secondItem="N4i-h8-NMe" secondAttribute="bottom" constant="-5" id="TfQ-lB-yP1"/>
                     <constraint firstItem="yO9-iG-fth" firstAttribute="leading" secondItem="gIp-Ho-8D9" secondAttribute="leading" constant="5" id="UAg-Tu-Nbb"/>
-                    <constraint firstItem="N4i-h8-NMe" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="34" id="Zb0-jE-1rj"/>
+                    <constraint firstItem="N4i-h8-NMe" firstAttribute="top" secondItem="gIp-Ho-8D9" secondAttribute="top" constant="35" id="Zb0-jE-1rj"/>
                     <constraint firstAttribute="trailing" secondItem="mvG-mb-gc6" secondAttribute="trailing" constant="56" id="ZxO-AK-BbG"/>
                     <constraint firstAttribute="trailing" secondItem="Nix-8N-TJD" secondAttribute="trailing" constant="7" id="gp3-R8-3s5"/>
                 </constraints>
@@ -82,7 +108,7 @@
             <connections>
                 <outlet property="delegate" destination="-2" id="0bl-1N-x8E"/>
             </connections>
-            <point key="canvasLocation" x="154" y="317.5"/>
+            <point key="canvasLocation" x="221.5" y="323.5"/>
         </window>
         <customObject id="s8s-LE-Mex" customClass="ServerAdressFormatter"/>
         <userDefaultsController representsSharedInstance="YES" id="cSm-k2-J3j"/>

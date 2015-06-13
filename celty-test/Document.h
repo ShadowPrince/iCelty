@@ -7,11 +7,16 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "CeltyClient.h"
+#import "HelmetView.h"
 
-@interface Document : NSDocument
+@interface Document : NSDocument {
+    IBOutlet NSStackView *widgets;
+    IBOutlet HelmetView *helmetView;
+}
 
 @property (readonly, copy) NSArray *serverAddress;
-
+@property (readonly, strong) CeltyClient *cc;
 
 @end
 

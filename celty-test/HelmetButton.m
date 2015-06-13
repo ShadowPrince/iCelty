@@ -19,14 +19,21 @@
              command:(NSString *)_command
       requiredValues:(NSArray *)_requiredValues {
 
-    self = [super initWithFrame:NSMakeRect(0, 0, 100, 20)];
+    self = [super init];
     
-    name = _name;
-    command = _command;
+    name = [_name copy];
+    command = [_command copy];
     requiredValues = [_requiredValues copy];
-    args = [[NSMutableDictionary alloc] init];
+    self.args = [[NSMutableDictionary alloc] init];
 
     return self;
+}
+
+- (void) setTitle:(NSString *)title {
+    [super setTitle:title];
+
+    NSLog(@"1");
+    [self setFrameSize:NSMakeSize([title length] * 10, 20)];
 }
 
 @end
