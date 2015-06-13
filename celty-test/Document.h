@@ -13,6 +13,7 @@
 @interface Document : NSDocument {
     IBOutlet NSStackView *widgets;
     IBOutlet HelmetView *helmetView;
+    IBOutlet NSClipView *widgetsClip;
 }
 
 @property (readonly, copy) NSArray *serverAddress;

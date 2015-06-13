@@ -16,6 +16,6 @@
 - (id) initWithServer:(NSArray *)_serverAddress
         andHelmetView:(HelmetView *)_helmetView;
 
-- (void) render;
+- (void) render:(NSStackView *)ss;
 
 @end

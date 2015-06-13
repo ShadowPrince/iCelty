@@ -18,12 +18,10 @@
     serverAddress = _serverAddress;
     helmetView = _helmetView;
 
-    [self render];
-
     return self;
 }
 
-- (void) render {
+- (void) render:(NSStackView *) ss {
     NSData *json = [[NSData alloc] initWithContentsOfFile:@"/Users/mc966/projects/ios/celty-test/celty-test/data/1.json"];
     NSError *e = nil;
 
@@ -31,7 +29,7 @@
                   JSONObjectWithData:json options:0 error:&e];
 
     if ([object isKindOfClass:[NSArray class]]) {
-        [self.helmetView initCeltyObjects:(NSArray *) object];
+        [self.helmetView initCeltyObjects:(NSArray *) object ss:ss];
     } else {
         [self.helmetView displayString:[e localizedDescription]];
     }

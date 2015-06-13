@@ -17,14 +17,15 @@
 @synthesize totalTopOffset, ongoingTopOffset, ongoingLeftOffset;
 @synthesize stackView, currentRow;
 
-- (void) initCeltyObjects:(NSArray *)rows {
-    NSStackView *_stackView = [[NSStackView alloc] init];
-    self.stackView = _stackView;
-
-    [self.stackView setOrientation:NSUserInterfaceLayoutOrientationVertical];
-    [self.stackView setAlignment:NSLayoutAttributeLeading];
-    self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.stackView];
+- (void) initCeltyObjects:(NSArray *)rows ss:(NSStackView *)__ss {
+//    NSStackView *_stackView = [[NSStackView alloc] init];
+//    self.stackView = _stackView;
+    self.stackView = __ss;
+//
+//    [self.stackView setOrientation:NSUserInterfaceLayoutOrientationVertical];
+//    [self.stackView setAlignment:NSLayoutAttributeLeading];
+//    self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
+//    [self addSubview:self.stackView];
     [self lineBreak];
 
     self.sizeConstraints = @[];
@@ -62,17 +63,21 @@
 - (void) updateConstraints {
     [super updateConstraints];
 
+
+    NSLog(@"%@", self.stackView.constraints);
+    return; // ----------------------------------
     [self removeConstraints:self.sizeConstraints];
     self.sizeConstraints = [[NSLayoutConstraint constraintsWithVisualFormat:[[NSString alloc] initWithFormat:@"V:[x(%d)]", 1000]
                                                                     options:NSLayoutFormatAlignAllCenterY
                                                                     metrics:@{}
                                                                       views:@{@"x": self}]
                             arrayByAddingObjectsFromArray:
-                            [NSLayoutConstraint constraintsWithVisualFormat:[[NSString alloc] initWithFormat:@"[x(%d)]", 1000]
+                            [NSLayoutConstraint constraintsWithVisualFormat:[[NSString alloc] initWithFormat:@"[x(%d)]", 400]
                                                                     options:NSLayoutFormatAlignAllCenterX
                                                                     metrics:@{}
                                                                       views:@{@"x": self}]];
     [self addConstraints:self.sizeConstraints];
+
 }
 
 - (void) addElement:(NSView *)e {
@@ -126,13 +131,6 @@
 
 - (BOOL) isFlipped {
     return YES;
-}
-
-- (void) drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-
-    [[NSColor greenColor] set];
-    [NSBezierPath fillRect:dirtyRect];
 }
 
 @end

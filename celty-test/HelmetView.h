@@ -8,14 +8,14 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface HelmetView : NSView
+@interface HelmetView
 @property (readonly, strong) NSMutableDictionary *viewDict;
 
 @property (readwrite, strong) NSArray *sizeConstraints;
 @property (readwrite, weak) NSStackView *currentRow, *stackView;
 @property (readwrite, assign) int totalTopOffset, ongoingTopOffset, ongoingLeftOffset, maxTopOffset, maxLeftOffset;
 
-- (void) initCeltyObjects:(NSArray *)rows;
+- (void) initCeltyObjects:(NSArray *)rows ss:(NSStackView *) __ss;
 - (void) displayString:(NSString *)str;
 
 @end

@@ -20,38 +20,16 @@
     [super windowControllerDidLoadNib:aController];
 
     cc = [[CeltyClient alloc] initWithServer:self.serverAddress andHelmetView:helmetView];
+    [cc render:widgets];
     self.serverAddress = @[@"127.0.0.1", @"80"];
-
-    NSTextField *tf;
-    for (int i = 0; i < 30; i++) {
-        tf = [[NSTextField alloc] init];
-        tf.stringValue = @"124";
-        tf.translatesAutoresizingMaskIntoConstraints = NO;
-        [widgets addView:tf inGravity:NSStackViewGravityLeading];
-    }
-
-    [widgets addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:[m(1000)]"
-                                                                    options:0 metrics:nil views:@{@"m": widgets}]];
-    [widgets layout];
-    NSLog(@"%f", tf.frame.size.height);
-
-    /*
-    widgets.translatesAutoresizingMaskIntoConstraints = NO;
-
-
-    NSTextField *tf = [[NSTextField alloc] init];
-    tf.translatesAutoresizingMaskIntoConstraints = NO;
-    tf.bezeled = NO;
-    tf.stringValue = @"124";
-    [widgets addView:tf inGravity:NSStackViewGravityLeading];
-
-
-    NSTextField *tf2 = [[NSTextField alloc] initWithFrame:NSMakeRect(0, 20, 10, 10)];
-    tf.translatesAutoresizingMaskIntoConstraints = NO;
-    tf.bezeled = NO;
-    tf.stringValue = @"123";
-    [widgets addView:tf2 inGravity:NSStackViewGravityTop];
-     */
+//
+//    NSTextField *tf;
+//    for (int i = 0; i < 30; i++) {
+//        tf = [[NSTextField alloc] init];
+//        tf.stringValue = [[NSString alloc] initWithFormat:@"%d", i];
+//        tf.translatesAutoresizingMaskIntoConstraints = NO;
+//        [widgets addView:tf inGravity:NSStackViewGravityLeading];
+//    }
 }
 
 + (BOOL)autosavesInPlace {
