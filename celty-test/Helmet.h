@@ -17,11 +17,13 @@
 @property (nonatomic, weak) id <HelmetDelegate> delegate;
 
 @property (readonly, strong) NSMutableDictionary *viewDict;
+@property (readonly, strong) NSMutableDictionary *elements;
 
 @property (readwrite, weak) NSStackView *view, *lastRow;
 
 - (instancetype) initWithView:(NSStackView *)sv;
 - (void) renderArray:(NSArray *)array;
+- (void) updateByArray:(NSDictionary *) data;
 - (void) displayString:(NSString *)str;
 
 @end

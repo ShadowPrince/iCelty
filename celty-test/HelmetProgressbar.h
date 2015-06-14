@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HelmetElement.h"
 
-@interface HelmetProgressbar : NSProgressIndicator
-@property (readonly, copy) NSString *name;
+@interface HelmetProgressbar : NSProgressIndicator <HelmetElement>
 
 - (id) initWithName:(NSString *)_name;
 @end

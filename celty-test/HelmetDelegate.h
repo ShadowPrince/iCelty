@@ -11,7 +11,7 @@
 
 @protocol HelmetDelegate <NSObject>
 @optional
-- (void) shouldSendCommand:(NSString *)cmd withArgs:(NSDictionary *)args;
+- (void) shouldSendCommand:(NSString *)cmd withArgs:(id)args;
 
 @end
 

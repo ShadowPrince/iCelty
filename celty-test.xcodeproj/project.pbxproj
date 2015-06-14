@@ -25,6 +25,8 @@
 		08EC4C0A1B2CCEC200A8D301 /* CeltyConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C091B2CCEC200A8D301 /* CeltyConnection.m */; };
 		08EC4C0F1B2CD5D900A8D301 /* FastServerSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C0C1B2CD5D900A8D301 /* FastServerSocket.m */; };
 		08EC4C101B2CD5D900A8D301 /* FastSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C0E1B2CD5D900A8D301 /* FastSocket.m */; };
+		08EC4C171B2DE31700A8D301 /* CeltyWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C161B2DE31700A8D301 /* CeltyWidget.m */; };
+		08EC4C1A1B2DE56900A8D301 /* VibrancyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C191B2DE56900A8D301 /* VibrancyView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,11 @@
 		08EC4C111B2CED2300A8D301 /* CeltyConnectionDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeltyConnectionDelegate.h; sourceTree = "<group>"; };
 		08EC4C121B2CEDD700A8D301 /* CeltyClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeltyClientDelegate.h; sourceTree = "<group>"; };
 		08EC4C131B2CF3E100A8D301 /* HelmetDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelmetDelegate.h; sourceTree = "<group>"; };
+		08EC4C141B2DC89900A8D301 /* HelmetElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelmetElement.h; sourceTree = "<group>"; };
+		08EC4C151B2DE31700A8D301 /* CeltyWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeltyWidget.h; sourceTree = "<group>"; };
+		08EC4C161B2DE31700A8D301 /* CeltyWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeltyWidget.m; sourceTree = "<group>"; };
+		08EC4C181B2DE56900A8D301 /* VibrancyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyView.h; sourceTree = "<group>"; };
+		08EC4C191B2DE56900A8D301 /* VibrancyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrancyView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +116,8 @@
 				08EC4C0C1B2CD5D900A8D301 /* FastServerSocket.m */,
 				08EC4C0D1B2CD5D900A8D301 /* FastSocket.h */,
 				08EC4C0E1B2CD5D900A8D301 /* FastSocket.m */,
+				08EC4C151B2DE31700A8D301 /* CeltyWidget.h */,
+				08EC4C161B2DE31700A8D301 /* CeltyWidget.m */,
 			);
 			name = Celty;
 			sourceTree = "<group>";
@@ -181,6 +190,7 @@
 				08B3C9B31B2B3F8B001F86A9 /* Helmet.h */,
 				08B3C9B41B2B3F8B001F86A9 /* Helmet.m */,
 				08EC4C131B2CF3E100A8D301 /* HelmetDelegate.h */,
+				08EC4C141B2DC89900A8D301 /* HelmetElement.h */,
 				08B3C9BD1B2B48FF001F86A9 /* HelmetButton.h */,
 				08B3C9BE1B2B48FF001F86A9 /* HelmetButton.m */,
 				08B3C9C41B2B51A0001F86A9 /* HelmetInput.h */,
@@ -197,6 +207,8 @@
 			isa = PBXGroup;
 			children = (
 				08B3C9AA1B2B10D5001F86A9 /* ServerAdressFormatter.h */,
+				08EC4C181B2DE56900A8D301 /* VibrancyView.h */,
+				08EC4C191B2DE56900A8D301 /* VibrancyView.m */,
 				08B3C9AB1B2B10D5001F86A9 /* ServerAdressFormatter.m */,
 				08BD50E71B2CBCCC0003EDF0 /* FlippedStackView.h */,
 				08BD50E81B2CBCCC0003EDF0 /* FlippedStackView.m */,
@@ -304,7 +316,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				08EC4C171B2DE31700A8D301 /* CeltyWidget.m in Sources */,
 				085BFC801B2C4E9C00366C55 /* CeltyClient.m in Sources */,
+				08EC4C1A1B2DE56900A8D301 /* VibrancyView.m in Sources */,
 				08B3C98D1B2A0011001F86A9 /* Document.m in Sources */,
 				08BD50E91B2CBCCC0003EDF0 /* FlippedStackView.m in Sources */,
 				08EC4C0F1B2CD5D900A8D301 /* FastServerSocket.m in Sources */,
@@ -442,6 +456,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "celty-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -453,6 +468,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "celty-test/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

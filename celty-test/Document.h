@@ -16,13 +16,14 @@
     IBOutlet NSStackView *helmetView;
     IBOutlet NSProgressIndicator *connectionIndicator;
     IBOutlet NSTextField *connectionStatus;
+    IBOutlet NSButton *connectDisconnectButton;
 }
 
 @property (readwrite, copy) NSArray *serverAddress;
 @property (readwrite, copy) NSString *token;
 @property (readonly, strong) CeltyClient *cc;
 
-- (IBAction)connect:(id)sender;
+- (IBAction)connectOrDisconnect:(id)sender;
 - (IBAction)mainMenu:(id)sender;
 @end
 

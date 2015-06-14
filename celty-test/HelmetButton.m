@@ -24,6 +24,9 @@
     name = [_name copy];
     command = [_command copy];
     requiredValues = [_requiredValues copy];
+
+    self.translatesAutoresizingMaskIntoConstraints = NO;
+    self.bezelStyle = NSPushOnPushOffButton;
     self.args = [[NSMutableDictionary alloc] init];
 
     return self;

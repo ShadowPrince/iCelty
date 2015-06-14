@@ -18,30 +18,53 @@
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     [super windowControllerDidLoadNib:aController];
+    [aController window].titleVisibility = NSWindowTitleHidden;
 
     connectionStatus.stringValue = @"";
     self.serverAddress = @[@"localhost", @"23590"];
     self.token = @"1";
 
     /*
-    NSTextField *tf;
     for (int i = 0; i < 30; i++) {
-        tf = [[NSTextField alloc] init];
-        tf.stringValue = [[NSString alloc] initWithFormat:@"%d", i];
+        NSButton *tf = [[NSButton alloc] init];
+        //tf.stringValue = [[NSString alloc] initWithFormat:@"%d", i];
+        tf.title = [[NSString alloc] initWithFormat:@"%d", i];
         tf.translatesAutoresizingMaskIntoConstraints = NO;
+        [tf setBezelStyle:NSPushOnPushOffButton];
+
         [widgets addView:tf inGravity:NSStackViewGravityLeading];
     }
      */
+
 }
 
-- (void) connect:(id)sender {
+- (void) connectOrDisconnect:(id)sender {
+    if (cc)
+        [self disconnect];
+    else
+        [self connect];
+}
+
+- (void) disconnect {
     [connectionIndicator startAnimation:self];
+
+    [connectDisconnectButton setTitle:@"Connect"];
+    connectionStatus.stringValue = @"";
+    cc = nil;
+
+    [connectionIndicator stopAnimation:self];
+}
+
+- (void) connect {
+    [connectionIndicator startAnimation:self];
+
     connectionStatus.stringValue = @"connecting";
+    [connectDisconnectButton setTitle:@"Disconnect"];
+
     cc = [[CeltyClient alloc] initWithServer:self.serverAddress
                                   helmetView:helmetView
                                  widgetsView:widgets
                                        token:self.token];
-
     [cc setDelegate:self];
 }
 
@@ -51,12 +74,14 @@
 
 - (void) didAuthenticated {
     [connectionIndicator stopAnimation:self];
-    connectionStatus.stringValue = @"";
+    connectionStatus.stringValue = @"authenticated";
+    connectionStatus.textColor = [NSColor greenColor];
 }
 
 - (void) didFailedAuthenticating:(NSError *)e {
     [connectionIndicator stopAnimation:self];
     connectionStatus.stringValue = [e localizedDescription];
+    connectionStatus.textColor = [NSColor redColor];
 }
 
 + (BOOL)autosavesInPlace {
@@ -94,6 +119,8 @@
         address = [address arrayByAddingObjectsFromArray:@[@"8080"]];
 
     serverAddress = address;
+
+    [self disconnect];
 }
 
 @end

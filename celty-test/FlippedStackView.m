@@ -9,7 +9,12 @@
 #import "FlippedStackView.h"
 
 @implementation FlippedStackView
+
 - (BOOL) isFlipped {
+    return YES;
+}
+
+- (BOOL) allowsVibrancy {
     return YES;
 }
 @end

@@ -28,10 +28,12 @@
     responsesPoll = [[NSMutableArray alloc] init];
 
     client = [[FastSocket alloc] initWithHost:@"localhost" andPort:@"23590"];
-    [client connect];
-
-    [NSThread detachNewThreadSelector:@selector(networkLoop) toTarget:self withObject:nil];
-    [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(actionsLoop) userInfo:nil repeats:YES];
+    if (![client connect]) {
+        NSLog(@"Connection failed");
+    } else {
+        [NSThread detachNewThreadSelector:@selector(networkLoop) toTarget:self withObject:nil];
+        [NSTimer scheduledTimerWithTimeInterval:0.3 target:self selector:@selector(actionsLoop) userInfo:nil repeats:YES];
+    }
     return self;
 }
 

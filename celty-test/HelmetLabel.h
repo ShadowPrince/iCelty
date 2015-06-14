@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HelmetElement.h"
 
-@interface HelmetLabel : NSTextField
-@property (readonly, copy) NSString *name;
+@interface HelmetLabel : NSTextField <HelmetElement>
 
 - (id) initWithName:(NSString *)_name
                 text:(NSString *)_text;

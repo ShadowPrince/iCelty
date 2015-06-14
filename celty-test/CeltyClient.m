@@ -10,7 +10,7 @@
 
 @implementation CeltyClient
 @synthesize serverAddress, token;
-@synthesize widgetsView;
+@synthesize widgets, widgetsView;
 @synthesize helmet;
 @synthesize delegate;
 
@@ -26,8 +26,10 @@
            widgetsView:(NSStackView *)_widgetsView
                 token:(NSString *)_token {
     self = [super init];
+
     serverAddress = _serverAddress;
     widgetsView = _widgetsView;
+    widgets = [[NSMutableDictionary alloc] init];
     token = _token;
     
     self.conn = [[CeltyConnection alloc] initWithServerAddress:_serverAddress];
@@ -35,8 +37,11 @@
     [self.conn sendObject:@{@"token": self.token}];
 
     helmet = [[Helmet alloc] initWithView:_helmetView];
-
     [helmet setDelegate:self];
+
+    [self.widgetsView.views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [self.widgetsView removeView:obj];
+    }];
     return self;
 }
 
@@ -54,17 +59,34 @@
         }
     } else if ([type isEqualTo:@"ui"]) {
         [self.helmet renderArray:msg[@"data"]];
+    } else if ([type isEqualTo:@"ui_update"]) {
+        [self.helmet updateByArray:msg[@"data"]];
+    } else if ([type isEqualTo:@"widgets"]) {
+        [self updateWidgetsWithDict:msg[@"data"]];
     }
 }
 
-- (void) shouldSendCommand:(NSString *)cmd withArgs:(NSDictionary *)args {
-    NSLog(@"Sending %@ with %@", cmd, args);
+- (void) shouldSendCommand:(NSString *)cmd withArgs:(id) args {
     [self.conn sendObject:@{@"command": cmd, @"args": args}];
+}
+
+- (void) updateWidgetsWithDict:(NSDictionary *)data {
+    [data enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *widget, BOOL *stop) {
+        CeltyWidget *w;
+        if (!(w = [self.widgets objectForKey:key])) {
+            w = [[CeltyWidget alloc] initWithTitle:key andText:@""];
+            self.widgets[key] = w;
+            [self.widgetsView addView:w inGravity:NSStackViewGravityLeading];
+        }
+
+        [self.widgets[key] updateText:[widget componentsJoinedByString:@"\n"]];
+    }];
 }
 
 - (void) authenticated {
     [delegate didAuthenticated];
     [self mainMenu];
+    [self shouldSendCommand:@"celty:subscribe" withArgs:@[@"celty:widgets"]];
 }
 
 - (void) mainMenu {

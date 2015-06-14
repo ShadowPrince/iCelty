@@ -18,6 +18,7 @@
     
     name = _name;
 
+    self.translatesAutoresizingMaskIntoConstraints = NO;
     self.stringValue = _text;
     self.drawsBackground = NO;
     self.bordered = NO;

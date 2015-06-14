@@ -10,6 +10,7 @@
 #import "Helmet.h"
 #import "CeltyConnection.h"
 #import "CeltyClientDelegate.h"
+#import "CeltyWidget.h"
 
 @interface CeltyClient : NSObject <CeltyConnectionDelegate, HelmetDelegate> {
     struct {
@@ -27,6 +28,7 @@
 @property (readwrite, copy) NSString *token;
 
 @property (readonly, weak) NSStackView *widgetsView;
+@property (readonly, strong) NSMutableDictionary *widgets;
 @property (readonly, strong) Helmet *helmet;
 
 - (id) initWithServer:(NSArray *)_serverAddress

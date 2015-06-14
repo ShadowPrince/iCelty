@@ -7,9 +7,9 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HelmetElement.h"
 
-@interface HelmetButton : NSButton
-@property (readonly, copy) NSString *name;
+@interface HelmetButton : NSButton <HelmetElement>
 @property (readonly, copy) NSString *command;
 @property (readonly, copy) NSArray *requiredValues;
 
