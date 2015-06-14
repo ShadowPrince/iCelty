@@ -17,7 +17,7 @@
     name = _name;
 
     [self addConstraints:
-     [NSLayoutConstraint constraintsWithVisualFormat:@"[x(10)]"
+     [NSLayoutConstraint constraintsWithVisualFormat:@"[x(100)]"
                                              options:0
                                              metrics:nil
                                                views:@{@"x": self}]];

@@ -29,11 +29,4 @@
     return self;
 }
 
-- (void) setTitle:(NSString *)title {
-    [super setTitle:title];
-
-    NSLog(@"1");
-    [self setFrameSize:NSMakeSize([title length] * 10, 20)];
-}
-
 @end

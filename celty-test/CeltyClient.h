@@ -7,15 +7,33 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HelmetView.h"
+#import "Helmet.h"
+#import "CeltyConnection.h"
+#import "CeltyClientDelegate.h"
 
-@interface CeltyClient : NSObject
+@interface CeltyClient : NSObject <CeltyConnectionDelegate, HelmetDelegate> {
+    struct {
+        BOOL didConnected:YES;
+        BOOL didFailedConnecting:YES;
+        BOOL didAuthenticated:YES;
+        BOOL didFailedAuthenticating:YES;
+
+    } delegateRespondsTo;
+}
+@property (nonatomic, weak) id <CeltyClientDelegate> delegate;
+
+@property (readwrite, strong) CeltyConnection *conn;
 @property (readonly, strong) NSArray *serverAddress;
-@property (readonly, strong) HelmetView *helmetView;
+@property (readwrite, copy) NSString *token;
+
+@property (readonly, weak) NSStackView *widgetsView;
+@property (readonly, strong) Helmet *helmet;
 
 - (id) initWithServer:(NSArray *)_serverAddress
-        andHelmetView:(HelmetView *)_helmetView;
+           helmetView:(NSStackView *)_helmetView
+          widgetsView:(NSStackView *)_widgetsView
+                token:(NSString *)_token;
 
-- (void) render:(NSStackView *)ss;
+- (void) mainMenu;
 
 @end

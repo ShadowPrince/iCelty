@@ -13,23 +13,50 @@
 @end
 
 @implementation Document
-@synthesize serverAddress;
+@synthesize serverAddress, token;
 @synthesize cc;
 
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController {
     [super windowControllerDidLoadNib:aController];
 
-    cc = [[CeltyClient alloc] initWithServer:self.serverAddress andHelmetView:helmetView];
-    [cc render:widgets];
-    self.serverAddress = @[@"127.0.0.1", @"80"];
-//
-//    NSTextField *tf;
-//    for (int i = 0; i < 30; i++) {
-//        tf = [[NSTextField alloc] init];
-//        tf.stringValue = [[NSString alloc] initWithFormat:@"%d", i];
-//        tf.translatesAutoresizingMaskIntoConstraints = NO;
-//        [widgets addView:tf inGravity:NSStackViewGravityLeading];
-//    }
+    connectionStatus.stringValue = @"";
+    self.serverAddress = @[@"localhost", @"23590"];
+    self.token = @"1";
+
+    /*
+    NSTextField *tf;
+    for (int i = 0; i < 30; i++) {
+        tf = [[NSTextField alloc] init];
+        tf.stringValue = [[NSString alloc] initWithFormat:@"%d", i];
+        tf.translatesAutoresizingMaskIntoConstraints = NO;
+        [widgets addView:tf inGravity:NSStackViewGravityLeading];
+    }
+     */
+}
+
+- (void) connect:(id)sender {
+    [connectionIndicator startAnimation:self];
+    connectionStatus.stringValue = @"connecting";
+    cc = [[CeltyClient alloc] initWithServer:self.serverAddress
+                                  helmetView:helmetView
+                                 widgetsView:widgets
+                                       token:self.token];
+
+    [cc setDelegate:self];
+}
+
+- (void) mainMenu:(id)sender {
+    [self.cc mainMenu];
+}
+
+- (void) didAuthenticated {
+    [connectionIndicator stopAnimation:self];
+    connectionStatus.stringValue = @"";
+}
+
+- (void) didFailedAuthenticating:(NSError *)e {
+    [connectionIndicator stopAnimation:self];
+    connectionStatus.stringValue = [e localizedDescription];
 }
 
 + (BOOL)autosavesInPlace {
