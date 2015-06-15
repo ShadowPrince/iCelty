@@ -7,10 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Helmet.h"
+#import "HelmetView.h"
 #import "CeltyConnection.h"
 #import "CeltyClientDelegate.h"
-#import "CeltyWidget.h"
+#import "HelmetWidgetsView.h"
 
 @interface CeltyClient : NSObject <CeltyConnectionDelegate, HelmetDelegate> {
     struct {
@@ -27,13 +27,12 @@
 @property (readonly, strong) NSArray *serverAddress;
 @property (readwrite, copy) NSString *token;
 
-@property (readonly, weak) NSStackView *widgetsView;
-@property (readonly, strong) NSMutableDictionary *widgets;
-@property (readonly, strong) Helmet *helmet;
+@property (readonly, weak) HelmetWidgetsView *widgetsView;
+@property (readonly, strong) HelmetView *helmet;
 
 - (id) initWithServer:(NSArray *)_serverAddress
-           helmetView:(NSStackView *)_helmetView
-          widgetsView:(NSStackView *)_widgetsView
+           helmetView:(HelmetView *)_helmetView
+          widgetsView:(HelmetWidgetsView *)_widgetsView
                 token:(NSString *)_token;
 
 - (void) mainMenu;

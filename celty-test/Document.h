@@ -8,18 +8,17 @@
 
 #import <Cocoa/Cocoa.h>
 #import "CeltyClient.h"
-#import "Helmet.h"
+#import "HelmetView.h"
 #import "CeltyClientDelegate.h"
 
 @interface Document : NSDocument <CeltyClientDelegate> {
     IBOutlet NSStackView *widgets;
-    IBOutlet NSStackView *helmetView;
+    IBOutlet HelmetView *helmetView;
     IBOutlet NSProgressIndicator *connectionIndicator;
-    IBOutlet NSTextField *connectionStatus;
     IBOutlet NSButton *connectDisconnectButton;
 }
 
-@property (readwrite, copy) NSArray *serverAddress;
+@property (readonly, copy) NSArray *serverAddress;
 @property (readwrite, copy) NSString *token;
 @property (readonly, strong) CeltyClient *cc;
 

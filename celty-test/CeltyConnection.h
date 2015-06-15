@@ -21,6 +21,8 @@
 
 @property (readonly, strong) FastSocket *client;
 @property (readwrite, strong) NSMutableString *buffer;
+
+@property (readwrite, atomic) BOOL run;
 @property (readonly, strong) NSMutableArray *responsesPoll;
 
 
@@ -28,5 +30,6 @@
 - (void) setDelegate:(id<CeltyConnectionDelegate>)delegate;
 
 - (void) sendObject:(id)object;
+- (void) close;
 
 @end

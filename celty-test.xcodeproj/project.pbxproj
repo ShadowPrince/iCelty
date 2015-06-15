@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		080535DE1B2EC0FC00AC71B8 /* HelmetWidgetsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 080535DD1B2EC0FC00AC71B8 /* HelmetWidgetsView.m */; };
 		08276F491B2B82B500F851FB /* HelmetProgressbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 08276F481B2B82B400F851FB /* HelmetProgressbar.m */; };
 		08276F4C1B2B8F9900F851FB /* HelmetLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 08276F4B1B2B8F9900F851FB /* HelmetLabel.m */; };
 		085BFC801B2C4E9C00366C55 /* CeltyClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 085BFC7F1B2C4E9C00366C55 /* CeltyClient.m */; };
@@ -18,15 +19,14 @@
 		08B3C9951B2A0011001F86A9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 08B3C9931B2A0011001F86A9 /* MainMenu.xib */; };
 		08B3C9A11B2A0011001F86A9 /* celty_testTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9A01B2A0011001F86A9 /* celty_testTests.m */; };
 		08B3C9AC1B2B10D5001F86A9 /* ServerAdressFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9AB1B2B10D5001F86A9 /* ServerAdressFormatter.m */; };
-		08B3C9B51B2B3F8B001F86A9 /* Helmet.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9B41B2B3F8B001F86A9 /* Helmet.m */; };
+		08B3C9B51B2B3F8B001F86A9 /* HelmetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9B41B2B3F8B001F86A9 /* HelmetView.m */; };
 		08B3C9BF1B2B48FF001F86A9 /* HelmetButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9BE1B2B48FF001F86A9 /* HelmetButton.m */; };
 		08B3C9C61B2B51A0001F86A9 /* HelmetInput.m in Sources */ = {isa = PBXBuildFile; fileRef = 08B3C9C51B2B51A0001F86A9 /* HelmetInput.m */; };
 		08BD50E91B2CBCCC0003EDF0 /* FlippedStackView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08BD50E81B2CBCCC0003EDF0 /* FlippedStackView.m */; };
 		08EC4C0A1B2CCEC200A8D301 /* CeltyConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C091B2CCEC200A8D301 /* CeltyConnection.m */; };
 		08EC4C0F1B2CD5D900A8D301 /* FastServerSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C0C1B2CD5D900A8D301 /* FastServerSocket.m */; };
 		08EC4C101B2CD5D900A8D301 /* FastSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C0E1B2CD5D900A8D301 /* FastSocket.m */; };
-		08EC4C171B2DE31700A8D301 /* CeltyWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C161B2DE31700A8D301 /* CeltyWidget.m */; };
-		08EC4C1A1B2DE56900A8D301 /* VibrancyView.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C191B2DE56900A8D301 /* VibrancyView.m */; };
+		08EC4C171B2DE31700A8D301 /* HelmetWidget.m in Sources */ = {isa = PBXBuildFile; fileRef = 08EC4C161B2DE31700A8D301 /* HelmetWidget.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		080535DC1B2EC0FC00AC71B8 /* HelmetWidgetsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetWidgetsView.h; sourceTree = "<group>"; };
+		080535DD1B2EC0FC00AC71B8 /* HelmetWidgetsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetWidgetsView.m; sourceTree = "<group>"; };
 		08276F471B2B82B400F851FB /* HelmetProgressbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetProgressbar.h; sourceTree = "<group>"; };
 		08276F481B2B82B400F851FB /* HelmetProgressbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetProgressbar.m; sourceTree = "<group>"; };
 		08276F4A1B2B8F9900F851FB /* HelmetLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetLabel.h; sourceTree = "<group>"; };
@@ -61,8 +63,8 @@
 		08B3C9A01B2A0011001F86A9 /* celty_testTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = celty_testTests.m; sourceTree = "<group>"; };
 		08B3C9AA1B2B10D5001F86A9 /* ServerAdressFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServerAdressFormatter.h; sourceTree = "<group>"; };
 		08B3C9AB1B2B10D5001F86A9 /* ServerAdressFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServerAdressFormatter.m; sourceTree = "<group>"; };
-		08B3C9B31B2B3F8B001F86A9 /* Helmet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helmet.h; sourceTree = "<group>"; };
-		08B3C9B41B2B3F8B001F86A9 /* Helmet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helmet.m; sourceTree = "<group>"; };
+		08B3C9B31B2B3F8B001F86A9 /* HelmetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetView.h; sourceTree = "<group>"; };
+		08B3C9B41B2B3F8B001F86A9 /* HelmetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetView.m; sourceTree = "<group>"; };
 		08B3C9BD1B2B48FF001F86A9 /* HelmetButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetButton.h; sourceTree = "<group>"; };
 		08B3C9BE1B2B48FF001F86A9 /* HelmetButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetButton.m; sourceTree = "<group>"; };
 		08B3C9C41B2B51A0001F86A9 /* HelmetInput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetInput.h; sourceTree = "<group>"; };
@@ -79,10 +81,8 @@
 		08EC4C121B2CEDD700A8D301 /* CeltyClientDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CeltyClientDelegate.h; sourceTree = "<group>"; };
 		08EC4C131B2CF3E100A8D301 /* HelmetDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelmetDelegate.h; sourceTree = "<group>"; };
 		08EC4C141B2DC89900A8D301 /* HelmetElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelmetElement.h; sourceTree = "<group>"; };
-		08EC4C151B2DE31700A8D301 /* CeltyWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CeltyWidget.h; sourceTree = "<group>"; };
-		08EC4C161B2DE31700A8D301 /* CeltyWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CeltyWidget.m; sourceTree = "<group>"; };
-		08EC4C181B2DE56900A8D301 /* VibrancyView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VibrancyView.h; sourceTree = "<group>"; };
-		08EC4C191B2DE56900A8D301 /* VibrancyView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VibrancyView.m; sourceTree = "<group>"; };
+		08EC4C151B2DE31700A8D301 /* HelmetWidget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelmetWidget.h; sourceTree = "<group>"; };
+		08EC4C161B2DE31700A8D301 /* HelmetWidget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelmetWidget.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,8 +116,6 @@
 				08EC4C0C1B2CD5D900A8D301 /* FastServerSocket.m */,
 				08EC4C0D1B2CD5D900A8D301 /* FastSocket.h */,
 				08EC4C0E1B2CD5D900A8D301 /* FastSocket.m */,
-				08EC4C151B2DE31700A8D301 /* CeltyWidget.h */,
-				08EC4C161B2DE31700A8D301 /* CeltyWidget.m */,
 			);
 			name = Celty;
 			sourceTree = "<group>";
@@ -187,8 +185,10 @@
 		08B3C9BC1B2B48E4001F86A9 /* Helmet */ = {
 			isa = PBXGroup;
 			children = (
-				08B3C9B31B2B3F8B001F86A9 /* Helmet.h */,
-				08B3C9B41B2B3F8B001F86A9 /* Helmet.m */,
+				08B3C9B31B2B3F8B001F86A9 /* HelmetView.h */,
+				08B3C9B41B2B3F8B001F86A9 /* HelmetView.m */,
+				080535DC1B2EC0FC00AC71B8 /* HelmetWidgetsView.h */,
+				080535DD1B2EC0FC00AC71B8 /* HelmetWidgetsView.m */,
 				08EC4C131B2CF3E100A8D301 /* HelmetDelegate.h */,
 				08EC4C141B2DC89900A8D301 /* HelmetElement.h */,
 				08B3C9BD1B2B48FF001F86A9 /* HelmetButton.h */,
@@ -199,6 +199,8 @@
 				08276F4B1B2B8F9900F851FB /* HelmetLabel.m */,
 				08276F471B2B82B400F851FB /* HelmetProgressbar.h */,
 				08276F481B2B82B400F851FB /* HelmetProgressbar.m */,
+				08EC4C151B2DE31700A8D301 /* HelmetWidget.h */,
+				08EC4C161B2DE31700A8D301 /* HelmetWidget.m */,
 			);
 			name = Helmet;
 			sourceTree = "<group>";
@@ -207,8 +209,6 @@
 			isa = PBXGroup;
 			children = (
 				08B3C9AA1B2B10D5001F86A9 /* ServerAdressFormatter.h */,
-				08EC4C181B2DE56900A8D301 /* VibrancyView.h */,
-				08EC4C191B2DE56900A8D301 /* VibrancyView.m */,
 				08B3C9AB1B2B10D5001F86A9 /* ServerAdressFormatter.m */,
 				08BD50E71B2CBCCC0003EDF0 /* FlippedStackView.h */,
 				08BD50E81B2CBCCC0003EDF0 /* FlippedStackView.m */,
@@ -219,9 +219,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		08B3C9801B2A0011001F86A9 /* celty-test */ = {
+		08B3C9801B2A0011001F86A9 /* iCelty */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 08B3C9A41B2A0011001F86A9 /* Build configuration list for PBXNativeTarget "celty-test" */;
+			buildConfigurationList = 08B3C9A41B2A0011001F86A9 /* Build configuration list for PBXNativeTarget "iCelty" */;
 			buildPhases = (
 				08B3C97D1B2A0011001F86A9 /* Sources */,
 				08B3C97E1B2A0011001F86A9 /* Frameworks */,
@@ -231,7 +231,7 @@
 			);
 			dependencies = (
 			);
-			name = "celty-test";
+			name = iCelty;
 			productName = "celty-test";
 			productReference = 08B3C9811B2A0011001F86A9 /* celty-test.app */;
 			productType = "com.apple.product-type.application";
@@ -285,7 +285,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				08B3C9801B2A0011001F86A9 /* celty-test */,
+				08B3C9801B2A0011001F86A9 /* iCelty */,
 				08B3C9991B2A0011001F86A9 /* celty-testTests */,
 			);
 		};
@@ -316,14 +316,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08EC4C171B2DE31700A8D301 /* CeltyWidget.m in Sources */,
+				08EC4C171B2DE31700A8D301 /* HelmetWidget.m in Sources */,
 				085BFC801B2C4E9C00366C55 /* CeltyClient.m in Sources */,
-				08EC4C1A1B2DE56900A8D301 /* VibrancyView.m in Sources */,
 				08B3C98D1B2A0011001F86A9 /* Document.m in Sources */,
 				08BD50E91B2CBCCC0003EDF0 /* FlippedStackView.m in Sources */,
 				08EC4C0F1B2CD5D900A8D301 /* FastServerSocket.m in Sources */,
 				08B3C9C61B2B51A0001F86A9 /* HelmetInput.m in Sources */,
-				08B3C9B51B2B3F8B001F86A9 /* Helmet.m in Sources */,
+				08B3C9B51B2B3F8B001F86A9 /* HelmetView.m in Sources */,
 				08276F491B2B82B500F851FB /* HelmetProgressbar.m in Sources */,
 				08B3C98A1B2A0011001F86A9 /* main.m in Sources */,
 				08B3C9881B2A0011001F86A9 /* AppDelegate.m in Sources */,
@@ -332,6 +331,7 @@
 				08EC4C0A1B2CCEC200A8D301 /* CeltyConnection.m in Sources */,
 				08B3C9AC1B2B10D5001F86A9 /* ServerAdressFormatter.m in Sources */,
 				08B3C9BF1B2B48FF001F86A9 /* HelmetButton.m in Sources */,
+				080535DE1B2EC0FC00AC71B8 /* HelmetWidgetsView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -348,7 +348,7 @@
 /* Begin PBXTargetDependency section */
 		08B3C99C1B2A0011001F86A9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 08B3C9801B2A0011001F86A9 /* celty-test */;
+			target = 08B3C9801B2A0011001F86A9 /* iCelty */;
 			targetProxy = 08B3C99B1B2A0011001F86A9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -521,7 +521,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		08B3C9A41B2A0011001F86A9 /* Build configuration list for PBXNativeTarget "celty-test" */ = {
+		08B3C9A41B2A0011001F86A9 /* Build configuration list for PBXNativeTarget "iCelty" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				08B3C9A51B2A0011001F86A9 /* Debug */,

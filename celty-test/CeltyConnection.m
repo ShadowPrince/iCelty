@@ -28,6 +28,8 @@
     responsesPoll = [[NSMutableArray alloc] init];
 
     client = [[FastSocket alloc] initWithHost:@"localhost" andPort:@"23590"];
+    self.run = YES;
+
     if (![client connect]) {
         NSLog(@"Connection failed");
     } else {
@@ -41,9 +43,7 @@
     long length = 10, received = 0;
     char buff[length];
 
-    [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(test) userInfo:nil repeats:NO];
-
-    while (true) {
+    while (self.run) {
         if ((received = [client receiveBytes:buff limit:length]) > 0) {
             [self.buffer appendString:[[NSString alloc] initWithBytes:buff length:received encoding:NSUTF8StringEncoding]];
 
@@ -56,6 +56,7 @@
                     [self.responsesPoll addObjectsFromArray:lines];
                 }
             }
+            lines = nil;
         }
     }
 }
@@ -98,6 +99,11 @@
 
     d = [strd dataUsingEncoding:NSUTF8StringEncoding];
     [client sendBytes:[d bytes] count:[d length]];
+}
+
+- (void) close {
+    self.run = NO;
+    [self.client close];
 }
 
 @end

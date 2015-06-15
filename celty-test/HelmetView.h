@@ -7,15 +7,24 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "HelmetDelegate.h"
+#import "FlippedStackView.h"
 
-@interface HelmetView
+@interface HelmetView : FlippedStackView {
+    struct {
+        BOOL shouldSendCommand:YES;
+    } delegateRespondsTo;
+}
+@property (nonatomic, weak) id <HelmetDelegate> delegate;
+
 @property (readonly, strong) NSMutableDictionary *viewDict;
+@property (readonly, strong) NSMutableDictionary *elements;
 
-@property (readwrite, strong) NSArray *sizeConstraints;
-@property (readwrite, weak) NSStackView *currentRow, *stackView;
-@property (readwrite, assign) int totalTopOffset, ongoingTopOffset, ongoingLeftOffset, maxTopOffset, maxLeftOffset;
+@property (readwrite, weak) NSStackView *lastRow;
 
-- (void) initCeltyObjects:(NSArray *)rows ss:(NSStackView *) __ss;
+- (void) renderArray:(NSArray *)array;
+- (void) updateByArray:(NSDictionary *) data;
+- (void) removeAllElements;
 - (void) displayString:(NSString *)str;
 
 @end

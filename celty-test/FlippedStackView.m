@@ -14,7 +14,4 @@
     return YES;
 }
 
-- (BOOL) allowsVibrancy {
-    return YES;
-}
 @end

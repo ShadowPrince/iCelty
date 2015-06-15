@@ -20,7 +20,6 @@
     [super windowControllerDidLoadNib:aController];
     [aController window].titleVisibility = NSWindowTitleHidden;
 
-    connectionStatus.stringValue = @"";
     self.serverAddress = @[@"localhost", @"23590"];
     self.token = @"1";
 
@@ -49,7 +48,6 @@
     [connectionIndicator startAnimation:self];
 
     [connectDisconnectButton setTitle:@"Connect"];
-    connectionStatus.stringValue = @"";
     cc = nil;
 
     [connectionIndicator stopAnimation:self];
@@ -57,8 +55,6 @@
 
 - (void) connect {
     [connectionIndicator startAnimation:self];
-
-    connectionStatus.stringValue = @"connecting";
     [connectDisconnectButton setTitle:@"Disconnect"];
 
     cc = [[CeltyClient alloc] initWithServer:self.serverAddress
@@ -74,14 +70,10 @@
 
 - (void) didAuthenticated {
     [connectionIndicator stopAnimation:self];
-    connectionStatus.stringValue = @"authenticated";
-    connectionStatus.textColor = [NSColor greenColor];
 }
 
 - (void) didFailedAuthenticating:(NSError *)e {
     [connectionIndicator stopAnimation:self];
-    connectionStatus.stringValue = [e localizedDescription];
-    connectionStatus.textColor = [NSColor redColor];
 }
 
 + (BOOL)autosavesInPlace {

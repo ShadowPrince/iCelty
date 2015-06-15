@@ -13,44 +13,50 @@
 #import "HelmetLabel.h"
 
 @implementation HelmetView
-@synthesize viewDict;
-@synthesize totalTopOffset, ongoingTopOffset, ongoingLeftOffset;
-@synthesize stackView, currentRow;
+@synthesize delegate;
+@synthesize viewDict, elements;
+@synthesize lastRow;
 
-- (void) initCeltyObjects:(NSArray *)rows ss:(NSStackView *)__ss {
-//    NSStackView *_stackView = [[NSStackView alloc] init];
-//    self.stackView = _stackView;
-    self.stackView = __ss;
-//
-//    [self.stackView setOrientation:NSUserInterfaceLayoutOrientationVertical];
-//    [self.stackView setAlignment:NSLayoutAttributeLeading];
-//    self.stackView.translatesAutoresizingMaskIntoConstraints = NO;
-//    [self addSubview:self.stackView];
+- (void) setDelegate:(id<HelmetDelegate>)_delegate {
+    delegate = _delegate;
+
+    delegateRespondsTo.shouldSendCommand = [delegate respondsToSelector:@selector(shouldSendCommand:withArgs:)];
+}
+
+- (void) removeAllElements {
+    viewDict = [[NSMutableDictionary alloc] init];
+    elements = [[NSMutableDictionary alloc] init];
+
+    for (NSView *v in [self views])
+        [self removeView:v];
+
     [self lineBreak];
+}
 
-    self.sizeConstraints = @[];
-    self.maxLeftOffset = 0;
-    self.maxTopOffset = 0;
-    viewDict = [[NSMutableDictionary alloc] initWithDictionary:@{@"input-two": @"FOO",
-                                                                 @"input-three": @"BAR", }];
-    for (NSArray *row in rows) {
+- (void) renderArray:(NSArray *)array {
+    [self removeAllElements];
+
+    for (NSArray *row in array) {
         for (NSDictionary *element in row) {
             NSString *type = element[@"type"];
+            NSString *name = element[@"name"];
+            if (name == nil)
+                name = @"unnamed";
+
             if ([type isEqualToString:@"button"]) {
-                HelmetButton *b = [[HelmetButton alloc] initWithName:element[@"name"]
+                HelmetButton *b = [[HelmetButton alloc] initWithName:name
                                                          command:element[@"command"]
                                                   requiredValues:element[@"grab"]];
                 b.args = element[@"args"];
                 b.title = element[@"caption"];
                 [self addButton:b];
             } else if ([type isEqualToString:@"label"]) {
-                HelmetLabel *l = [[HelmetLabel alloc] initWithName:element[@"name"]
+                HelmetLabel *l = [[HelmetLabel alloc] initWithName:name
                                                               text:element[@"text"]];
                 [self addElement:l];
             } else if ([type isEqualToString:@"input"]) {
-                HelmetInput *i = [[HelmetInput alloc] initWithName:element[@"name"]];
-                i.stringValue = element[@"value"];
-
+                HelmetInput *i = [[HelmetInput alloc] initWithName:name];
+                [viewDict setObject:element[@"value"] forKey:element[@"name"]];
                 [self addInput:i];
             }
         }
@@ -60,32 +66,51 @@
     [self lineBreak];
 }
 
-- (void) updateConstraints {
-    [super updateConstraints];
+- (void) updateByArray:(NSDictionary *) data {
+    NSArray *keyPairs = @[
+                          @[@"text", @"stringValue"],
+                          @[@"caption", @"title"]
+                          ];
 
+    for (NSString *key in [data allKeys]) {
+        NSMutableDictionary *values = [[data objectForKey:key] mutableCopy];
+        NSView <HelmetElement> *el = [self.elements objectForKey:key];
+        NSString *class = [el className];
 
-    NSLog(@"%@", self.stackView.constraints);
-    return; // ----------------------------------
-    [self removeConstraints:self.sizeConstraints];
-    self.sizeConstraints = [[NSLayoutConstraint constraintsWithVisualFormat:[[NSString alloc] initWithFormat:@"V:[x(%d)]", 1000]
-                                                                    options:NSLayoutFormatAlignAllCenterY
-                                                                    metrics:@{}
-                                                                      views:@{@"x": self}]
-                            arrayByAddingObjectsFromArray:
-                            [NSLayoutConstraint constraintsWithVisualFormat:[[NSString alloc] initWithFormat:@"[x(%d)]", 400]
-                                                                    options:NSLayoutFormatAlignAllCenterX
-                                                                    metrics:@{}
-                                                                      views:@{@"x": self}]];
-    [self addConstraints:self.sizeConstraints];
+        if (el) {
+            int method = 0;
+            if (values[@"__method"]) {
+                method = 1;
+                [values removeObjectForKey:@"__method"];
+            }
 
+            for (NSString *key in [values allKeys]) {
+                id object = [values objectForKey:key];
+
+                if ([class isEqualTo:@"HelmetInput"] && [key isEqualTo:@"value"]) {
+                    [viewDict setObject:object forKey:[el name]];
+                } else {
+                    NSString *newKey = key;
+                    for (NSArray *pair in keyPairs)
+                        if ([pair[0] isEqualTo:key]) {
+                            newKey = pair[1];
+                            break;
+                        }
+
+                    if (method == 0) {
+                        [el setValue:object forKey:newKey];
+                    } else if (method == 1) {
+                        [el setValue:[[el valueForKey:newKey] stringByAppendingString:object ] forKey:newKey];
+                    }
+                }
+            }
+        }
+    }
 }
 
-- (void) addElement:(NSView *)e {
-    [e setFrameOrigin:NSMakePoint(self.ongoingLeftOffset, self.totalTopOffset)];
-    e.translatesAutoresizingMaskIntoConstraints = NO;
-    [self.currentRow addView:e inGravity:NSStackViewGravityLeading];
-
-    [self updateConstraints];
+- (void) addElement:(NSView <HelmetElement> *)e {
+    [self.elements setObject:e forKey:e.name];
+    [self.lastRow addView:e inGravity:NSStackViewGravityLeading];
 }
 
 - (void) addButton:(HelmetButton *)b {
@@ -95,7 +120,7 @@
 }
 
 - (void) addInput:(HelmetInput *)input {
-    [input bind:@"value" toObject:self.viewDict withKeyPath:input.name options:nil];
+    [input bind:@"value" toObject:self.viewDict withKeyPath:input.name options:@{NSContinuouslyUpdatesValueBindingOption: @YES}];
     [self addElement:input];
 }
 
@@ -103,9 +128,9 @@
     NSStackView *newRow = [[NSStackView alloc] init];
     newRow.translatesAutoresizingMaskIntoConstraints = NO;
     [newRow setOrientation:NSUserInterfaceLayoutOrientationHorizontal];
-    [self.stackView addView:newRow inGravity:NSStackViewGravityLeading];
+    [self addView:newRow inGravity:NSStackViewGravityLeading];
 
-    self.currentRow = newRow;
+    self.lastRow = newRow;
 }
 
 - (void) buttonSubmit:(HelmetButton *) sender{
@@ -119,18 +144,12 @@
         }
     }
 
-    NSLog(@"Celty call: %@(%@)", sender.command, args);
-    /* Proceed to send sender.command with values
-     */
+    [self.delegate shouldSendCommand:sender.command withArgs:args];
 }
 
 - (void) displayString:(NSString *)str {
-    [self addElement:[[HelmetLabel alloc] initWithName:@"string" text:str]];
-}
-
-
-- (BOOL) isFlipped {
-    return YES;
+    [self removeAllElements];
+    [self.lastRow addView:[[HelmetLabel alloc] initWithName:@"1" text:str] inGravity:NSStackViewGravityTop];
 }
 
 @end

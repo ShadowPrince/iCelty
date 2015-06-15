@@ -10,7 +10,7 @@
 
 @implementation CeltyClient
 @synthesize serverAddress, token;
-@synthesize widgets, widgetsView;
+@synthesize widgetsView;
 @synthesize helmet;
 @synthesize delegate;
 
@@ -22,26 +22,22 @@
 }
 
 - (id) initWithServer:(id)_serverAddress
-           helmetView:(NSStackView *)_helmetView
-           widgetsView:(NSStackView *)_widgetsView
+           helmetView:(HelmetView *)_helmetView
+           widgetsView:(HelmetWidgetsView *)_widgetsView
                 token:(NSString *)_token {
     self = [super init];
 
     serverAddress = _serverAddress;
     widgetsView = _widgetsView;
-    widgets = [[NSMutableDictionary alloc] init];
     token = _token;
-    
+
     self.conn = [[CeltyConnection alloc] initWithServerAddress:_serverAddress];
     [self.conn setDelegate:self];
     [self.conn sendObject:@{@"token": self.token}];
 
-    helmet = [[Helmet alloc] initWithView:_helmetView];
+    helmet = _helmetView;
     [helmet setDelegate:self];
 
-    [self.widgetsView.views enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [self.widgetsView removeView:obj];
-    }];
     return self;
 }
 
@@ -55,6 +51,7 @@
             NSError *e = [[NSError alloc] initWithDomain:@"auth"
                                                     code:1
                                                 userInfo:@{NSLocalizedDescriptionKey: msg[@"error"]}];
+            [self.helmet displayString:[e localizedDescription]];
             [delegate didFailedAuthenticating:e];
         }
     } else if ([type isEqualTo:@"ui"]) {
@@ -62,25 +59,12 @@
     } else if ([type isEqualTo:@"ui_update"]) {
         [self.helmet updateByArray:msg[@"data"]];
     } else if ([type isEqualTo:@"widgets"]) {
-        [self updateWidgetsWithDict:msg[@"data"]];
+        [self.widgetsView updateWidgetsWithDict:msg[@"data"]];
     }
 }
 
 - (void) shouldSendCommand:(NSString *)cmd withArgs:(id) args {
     [self.conn sendObject:@{@"command": cmd, @"args": args}];
-}
-
-- (void) updateWidgetsWithDict:(NSDictionary *)data {
-    [data enumerateKeysAndObjectsUsingBlock:^(id key, NSArray *widget, BOOL *stop) {
-        CeltyWidget *w;
-        if (!(w = [self.widgets objectForKey:key])) {
-            w = [[CeltyWidget alloc] initWithTitle:key andText:@""];
-            self.widgets[key] = w;
-            [self.widgetsView addView:w inGravity:NSStackViewGravityLeading];
-        }
-
-        [self.widgets[key] updateText:[widget componentsJoinedByString:@"\n"]];
-    }];
 }
 
 - (void) authenticated {
@@ -91,6 +75,12 @@
 
 - (void) mainMenu {
     [self.conn sendObject:@{@"command": @"celty:main"}];
+}
+
+- (void) dealloc {
+    [self.conn close];
+    [self.helmet removeAllElements];
+    [self.widgetsView removeAllElements];
 }
 
 @end

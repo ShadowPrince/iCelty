@@ -9,5 +9,4 @@
 #import <Cocoa/Cocoa.h>
 
 @interface FlippedStackView : NSStackView
-- (BOOL) isFlipped;
 @end
