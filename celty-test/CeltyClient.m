@@ -34,7 +34,7 @@
     self.conn = [[CeltyConnection alloc] initWithServerAddress:_serverAddress];
     [self.conn setDelegate:self];
     [self.conn sendObject:@{@"token": self.token}];
-
+    
     helmet = _helmetView;
     [helmet setDelegate:self];
 

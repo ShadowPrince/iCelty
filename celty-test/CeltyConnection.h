@@ -20,7 +20,6 @@
 @property (nonatomic, weak) id <CeltyConnectionDelegate> delegate;
 
 @property (readonly, strong) FastSocket *client;
-@property (readwrite, strong) NSMutableString *buffer;
 
 @property (readwrite, atomic) BOOL run;
 @property (readonly, strong) NSMutableArray *responsesPoll;

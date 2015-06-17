@@ -10,7 +10,7 @@
 #import "CeltyConnectionDelegate.h"
 
 @implementation CeltyConnection
-@synthesize client, buffer;
+@synthesize client;
 @synthesize responsesPoll;
 @synthesize delegate;
 
@@ -24,7 +24,6 @@
 - (instancetype) initWithServerAddress:(NSArray *)serverAddress {
     self = [super init];
 
-    self.buffer = [[NSMutableString alloc] init];
     responsesPoll = [[NSMutableArray alloc] init];
 
     client = [[FastSocket alloc] initWithHost:@"localhost" andPort:@"23590"];
@@ -40,25 +39,30 @@
 }
 
 - (void) networkLoop {
-    long length = 10, received = 0;
-    char buff[length];
+    @autoreleasepool {
+        long length = 1024, received = 0;
+        char buff[length];
+        NSMutableString *buffer = [[NSMutableString alloc] init];
 
-    while (self.run) {
-        if ((received = [client receiveBytes:buff limit:length]) > 0) {
-            [self.buffer appendString:[[NSString alloc] initWithBytes:buff length:received encoding:NSUTF8StringEncoding]];
+        while (self.run) {
+            @autoreleasepool {
+                if ((received = [client receiveBytes:buff limit:length]) > 0) {
+                    [buffer appendString:[[NSString alloc] initWithBytes:buff length:received encoding:NSUTF8StringEncoding]];
+                    NSMutableArray *lines = [[buffer componentsSeparatedByString:@"\r\n"] mutableCopy];
 
-            NSMutableArray *lines = [[self.buffer componentsSeparatedByString:@"\r\n"] mutableCopy];
-            if ([lines count] > 1) {
-                self.buffer = [[lines lastObject] mutableCopy];
-                [lines removeLastObject];
+                    if ([lines count] > 1) {
+                        [buffer setString:[lines lastObject]];
+                        [lines removeLastObject];
 
-                @synchronized(self.responsesPoll) {
-                    [self.responsesPoll addObjectsFromArray:lines];
+                        @synchronized(self.responsesPoll) {
+                            [self.responsesPoll addObjectsFromArray:lines];
+                        }
+                    }
                 }
             }
-            lines = nil;
         }
     }
+    
 }
 
 - (void) actionsLoop {
@@ -90,7 +94,7 @@
                                                   error:&e];
 
     if (e) {
-        NSLog(@"%@", e); //@TODO: raise shit
+        NSLog(@"%@", e); //@TODO: error reporting
     }
 
     NSString *strd = [[[NSString alloc] initWithData:d
