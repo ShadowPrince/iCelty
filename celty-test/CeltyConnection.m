@@ -26,7 +26,7 @@
 
     responsesPoll = [[NSMutableArray alloc] init];
 
-    client = [[FastSocket alloc] initWithHost:@"localhost" andPort:@"23590"];
+    client = [[FastSocket alloc] initWithHost:serverAddress[0] andPort:serverAddress[1]];
     self.run = YES;
 
     if (![client connect]) {
